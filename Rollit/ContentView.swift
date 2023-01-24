@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+//    let dice: Dice
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            NavigationLink {
+                RollView(dice: Dice.example)
+            } label: {
+                Text("Roll dice!")
+            }
+        }
     }
 }
 
