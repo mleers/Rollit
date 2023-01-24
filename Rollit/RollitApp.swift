@@ -11,7 +11,7 @@ import SwiftUI
 struct RollitApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(dice: Dice.example)
         }
     }
 }
