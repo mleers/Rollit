@@ -22,9 +22,9 @@ struct ContentView: View {
         VStack {
             HStack {
                 Text("How many dice?")
+                    .font(.title3)
                 Spacer()
             }
-//                .padding(.leading, 2)
             
             Picker("Amount", selection: $selectedAmount) {
                 ForEach(amounts, id: \.self) {
@@ -37,9 +37,9 @@ struct ContentView: View {
             
             HStack {
                 Text("How many sides?")
+                    .font(.title3)
                 Spacer()
             }
-//                .padding(.leading, 2)
             
             Picker("Sides", selection: $selectedSide) {
                 ForEach(sides, id: \.self) {
@@ -51,15 +51,22 @@ struct ContentView: View {
             Spacer()
 
             HStack {
-                Button("Roll \(Image(systemName: "die.face.6"))", action: pick)
-//                Button("Save Result", action: nil)
+                Button {
+                    pick()
+                } label: {
+                    Text("Roll \(Image(systemName: "die.face.6"))")
+                        .frame(width: 200, height: 50)
+                        .foregroundColor(Color.white)
+                        .background(Color(red: 43/255, green: 146/255, blue: 186/255))
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.title3)
+                }
             }
-            .buttonStyle(.bordered)
             
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 20) {
                 ForEach(results, id: \.self) {num in
                     HStack {
-                        if selectedSide == 4 || selectedSide == 6 {
+                        if num <= 6 {
                             Image(systemName: "die.face.\(num)")
                                 .font(.largeTitle)
                             Text("\(num)")
@@ -95,7 +102,6 @@ struct ContentView: View {
     
     func reset() {
         results.removeAll()
-        timeRemaining = 3
     }
 }
 
